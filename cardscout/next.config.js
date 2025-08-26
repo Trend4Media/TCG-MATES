@@ -13,8 +13,11 @@ const nextConfig = {
       },
     ],
   },
-  basePath: '/TCG-MATES',
-  assetPrefix: '/TCG-MATES/',
+  // For GitHub Pages deployment
+  ...(process.env.NODE_ENV === 'production' && {
+    basePath: '/TCG-MATES',
+    assetPrefix: '/TCG-MATES/',
+  }),
 }
 
 module.exports = nextConfig
