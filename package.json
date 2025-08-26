@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "description": "A Pokemon card search application using the Pokemon TCG API",
-  "keywords": ["pokemon", "tcg", "cards", "search", "nextjs", "tailwindcss"],
+  "keywords": [
+    "pokemon",
+    "tcg",
+    "cards",
+    "search",
+    "nextjs",
+    "tailwindcss"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -12,19 +19,20 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "framer-motion": "^12.23.12",
+    "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.0"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

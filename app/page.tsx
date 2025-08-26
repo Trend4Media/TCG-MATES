@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import SearchBar from '@/components/SearchBar';
 import CardGrid from '@/components/CardGrid';
 import Pagination from '@/components/Pagination';
+import Link from 'next/link';
 import { ApiResponse, SearchState } from '@/lib/types';
 
 const CARDS_PER_CLIENT_PAGE = 24;
@@ -91,8 +92,19 @@ export default function Home() {
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
+            <div className="flex justify-between items-center mb-8">
+              <div></div>
+              <Link
+                href="/landing"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 shadow-lg"
+              >
+                🌟 Landing Page ansehen
+              </Link>
+            </div>
             <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="text-blue-600">Card</span>scout
+              <span className="text-blue-600">TCG-MATES</span>
+              <br />
+              <span className="text-2xl sm:text-3xl md:text-4xl text-gray-700">Cardscout</span>
             </h1>
             <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
               Discover and explore Pokémon trading cards with powerful search capabilities.
