@@ -29,14 +29,16 @@ export default function Home() {
         ...(append ? {} : { results: [], clientPage: 1 })
       }));
 
-      const response = await fetch(`/api/cards?q=${encodeURIComponent(query)}&page=${page}`);
+      // For GitHub Pages deployment, use direct API calls
+      const { searchCardsClient, getMockApiResponse } = await import('@/lib/client-api');
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+      let data: ApiResponse;
+      try {
+        data = await searchCardsClient(query, page);
+      } catch (error) {
+        console.warn('API call failed, using mock data:', error);
+        data = getMockApiResponse(query);
       }
-
-      const data: ApiResponse = await response.json();
       
       setSearchState(prev => ({
         ...prev,

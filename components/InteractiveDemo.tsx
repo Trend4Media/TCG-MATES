@@ -66,18 +66,38 @@ export default function InteractiveDemo() {
     setIsSearching(true);
     setSearchQuery(query);
     
-    // Simulate API call
-    setTimeout(() => {
-      const filteredResults = mockResults.filter(card => 
-        card.name.toLowerCase().includes(query.toLowerCase()) ||
-        query.toLowerCase().includes('fire') && card.type === 'Fire' ||
-        query.toLowerCase().includes('charizard') && card.name.toLowerCase().includes('charizard') ||
-        query.toLowerCase().includes('pikachu') && card.name.toLowerCase().includes('pikachu')
-      );
+    try {
+      // Try real API first, fallback to mock data
+      const { searchCardsClient, getMockApiResponse } = await import('@/lib/client-api');
       
-      setResults(filteredResults.length > 0 ? filteredResults : mockResults.slice(0, 2));
+      setTimeout(async () => {
+        try {
+          const apiResponse = await searchCardsClient(query, 1);
+          const convertedResults = apiResponse.data.slice(0, 3).map(card => ({
+            id: card.id,
+            name: card.name,
+            set: card.set.name,
+            rarity: card.rarity || 'Common',
+            type: card.types?.[0] || 'Normal',
+            image: card.images.small
+          }));
+          setResults(convertedResults);
+        } catch (error) {
+          // Fallback to mock data
+          const filteredResults = mockResults.filter(card => 
+            card.name.toLowerCase().includes(query.toLowerCase()) ||
+            query.toLowerCase().includes('fire') && card.type === 'Fire' ||
+            query.toLowerCase().includes('charizard') && card.name.toLowerCase().includes('charizard') ||
+            query.toLowerCase().includes('pikachu') && card.name.toLowerCase().includes('pikachu')
+          );
+          setResults(filteredResults.length > 0 ? filteredResults : mockResults.slice(0, 2));
+        }
+        setIsSearching(false);
+      }, 1500);
+    } catch (error) {
+      console.error('Demo search error:', error);
       setIsSearching(false);
-    }, 1500);
+    }
   };
 
   const handleExampleClick = (example: string) => {
