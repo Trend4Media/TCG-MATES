@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import SearchBar from '@/components/SearchBar';
 import CardGrid from '@/components/CardGrid';
 import Pagination from '@/components/Pagination';
+import ApiExplorer from '@/components/ApiExplorer';
 import Link from 'next/link';
 import { ApiResponse, SearchState } from '@/lib/types';
 
@@ -155,50 +156,55 @@ export default function Home() {
 
         {/* Welcome State */}
         {searchState.status === 'idle' && (
-          <div className="text-center py-12">
-            <div className="max-w-2xl mx-auto">
-              <svg
-                className="w-20 h-20 mx-auto text-blue-500 mb-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Start searching for Pokémon cards
-              </h2>
-              <p className="text-gray-600 mb-8">
-                Use the search bar above to find cards by name, set, type, or other attributes.
-              </p>
-              
-              <div className="bg-blue-50 rounded-lg p-6 text-left">
-                <h3 className="font-semibold text-blue-900 mb-3">Search Examples:</h3>
-                <div className="space-y-2 text-sm">
-                  <div>
-                    <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:pikachu</code>
-                    <span className="text-blue-700 ml-2">- Find cards with &quot;pikachu&quot; in the name</span>
-                  </div>
-                  <div>
-                    <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:&quot;charizard ex&quot;</code>
-                    <span className="text-blue-700 ml-2">- Find exact phrase matches</span>
-                  </div>
-                  <div>
-                    <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:char*</code>
-                    <span className="text-blue-700 ml-2">- Use wildcards for partial matches</span>
-                  </div>
-                  <div>
-                    <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:charizard subtypes:vmax</code>
-                    <span className="text-blue-700 ml-2">- Combine multiple search criteria</span>
+          <div>
+            <div className="text-center py-12">
+              <div className="max-w-2xl mx-auto">
+                <svg
+                  className="w-20 h-20 mx-auto text-blue-500 mb-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  Start searching for Pokémon cards
+                </h2>
+                <p className="text-gray-600 mb-8">
+                  Use the search bar above to find cards by name, set, type, or other attributes.
+                </p>
+                
+                <div className="bg-blue-50 rounded-lg p-6 text-left">
+                  <h3 className="font-semibold text-blue-900 mb-3">Search Examples:</h3>
+                  <div className="space-y-2 text-sm">
+                    <div>
+                      <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:pikachu</code>
+                      <span className="text-blue-700 ml-2">- Find cards with &quot;pikachu&quot; in the name</span>
+                    </div>
+                    <div>
+                      <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:&quot;charizard ex&quot;</code>
+                      <span className="text-blue-700 ml-2">- Find exact phrase matches</span>
+                    </div>
+                    <div>
+                      <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:char*</code>
+                      <span className="text-blue-700 ml-2">- Use wildcards for partial matches</span>
+                    </div>
+                    <div>
+                      <code className="bg-white px-2 py-1 rounded text-blue-800 font-mono">name:charizard subtypes:vmax</code>
+                      <span className="text-blue-700 ml-2">- Combine multiple search criteria</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* API Explorer */}
+            <ApiExplorer />
           </div>
         )}
 
