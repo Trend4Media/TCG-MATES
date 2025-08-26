@@ -1,4 +1,4 @@
-# Cardscout 🔍
+# TCG-MATES: Cardscout 🔍
 
 A modern Pokemon card search application built with Next.js and the Pokemon TCG API.
 
